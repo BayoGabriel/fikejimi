@@ -1,8 +1,11 @@
 "use client";
 
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import Script from "next/script";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import confetti from "canvas-confetti";
+import Image from "next/image";
+import Wanted from "@/assets/Priceless.png";
 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
@@ -41,17 +44,17 @@ type StepId =
   | "success";
 
 const journeyLines = [
-  "Some people search the whole world for something special…",
-  "But somehow… I found something priceless in you.",
-  "You make everything feel lighter, better, happier.",
-  "And honestly… this feels like the start of something beautiful.",
+  "Some people cross oceans chasing a dream…",
+  "But somehow, I didn’t have to travel far — I found something priceless in you.",
+  "When you’re around, life feels softer… lighter… happier.",
+  "And I keep thinking… maybe this is destiny starting something beautiful.",
 ];
 
 const treasureCards = [
-  "Your smile >>> everything",
-  "The way you make me laugh",
-  "Your energy is unmatched",
-  "You being you (this one is my favorite)",
+  "Your smile >>> everything (it disarms me every time)",
+  "The way you make me laugh — like for real, from my chest",
+  "Your energy… it makes everything feel possible",
+  "You being you (this one is my favorite treasure)",
 ];
 
 const noMessages = [
@@ -59,8 +62,30 @@ const noMessages = [
   "Try again, future girlfriend",
   "This option is under maintenance 😂",
   "Be serious Fike 😭",
-  "You clicked wrong, I forgive you",
+  "You clicked wrong — I forgive you",
 ];
+
+function TenorGif({
+  postId,
+  className,
+  aspectRatio,
+}: {
+  postId: string;
+  className?: string;
+  aspectRatio?: string;
+}) {
+  return (
+    <div className={className ? className : ""}>
+      <div
+        className="tenor-gif-embed"
+        data-postid={postId}
+        data-share-method="host"
+        data-aspect-ratio={aspectRatio ?? "1"}
+        data-width="100%"
+      />
+    </div>
+  );
+}
 
 function HeartBurst({ active }: { active: boolean }) {
   const reduce = useReducedMotion();
@@ -135,57 +160,18 @@ function PillButton({
   );
 }
 
-function MusicToggle() {
-  const [on, setOn] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  useEffect(() => {
-    audioRef.current = new Audio("/music.mp3");
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.6;
-
-    return () => {
-      audioRef.current?.pause();
-      audioRef.current = null;
-    };
-  }, []);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    if (on) {
-      void audio.play().catch(() => {
-        setOn(false);
-      });
-    } else {
-      audio.pause();
-    }
-  }, [on]);
-
-  return (
-    <button
-      onClick={() => setOn((v) => !v)}
-      className="group fixed right-4 top-4 z-50 rounded-full bg-black/25 px-4 py-2 text-xs font-medium text-white ring-1 ring-white/25 backdrop-blur active:scale-[0.99]"
-      aria-label="Toggle music"
-    >
-      <span className="inline-flex items-center gap-2">
-        <span className="text-base leading-none">♪</span>
-        <span>{on ? "Music on" : "Music off"}</span>
-      </span>
-    </button>
-  );
-}
 
 export default function LoveExperience() {
   const reduce = useReducedMotion();
   const [step, setStep] = useState<StepId>("intro");
   const [journeyIndex, setJourneyIndex] = useState(0);
   const [showBurst, setShowBurst] = useState(false);
+  const [showYesGif, setShowYesGif] = useState(false);
 
   const startedAt = useMemo(() => {
     const now = new Date();
-    return new Date(now.getTime() - 1000 * 60 * 60 * 24 * 34 - 1000 * 60 * 17);
+    return new Date(now.getTime() - 1000 * 60 * 60 * 24 * 200 - 1000 * 60 * 17);
   }, []);
 
   const [sinceText, setSinceText] = useState("...");
@@ -225,8 +211,12 @@ export default function LoveExperience() {
 
   const [noAttempt, setNoAttempt] = useState(0);
   const [noLabel, setNoLabel] = useState("No");
-  const [noMessage, setNoMessage] = useState(noMessages[0]);
+  const [noMessage, setNoMessage] = useState("");
   const [noPos, setNoPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+
+  const [journeyMessage, setJourneyMessage] = useState(
+    "Tap to continue… and if you tap the little hearts, you might find secrets.",
+  );
 
   const questionAreaRef = useRef<HTMLDivElement | null>(null);
 
@@ -272,6 +262,9 @@ export default function LoveExperience() {
     setShowBurst(true);
     window.setTimeout(() => setShowBurst(false), 1400);
 
+    setShowYesGif(true);
+    window.setTimeout(() => setShowYesGif(false), 2200);
+
     try {
       const colors = ["#ff4da6", "#ffd166", "#7bdff2", "#ffffff"]; // pink, gold, ocean, white
       confetti({
@@ -295,7 +288,8 @@ export default function LoveExperience() {
 
   return (
     <div className="relative min-h-dvh w-full overflow-hidden bg-[#070912] text-white">
-      <MusicToggle />
+      <Script src="https://tenor.com/embed.js" strategy="afterInteractive" />
+      {/* <MusicToggle /> */}
 
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,77,166,0.35),transparent_40%),radial-gradient(circle_at_80%_30%,rgba(123,223,242,0.28),transparent_45%),radial-gradient(circle_at_50%_85%,rgba(255,209,102,0.25),transparent_45%)]" />
@@ -315,9 +309,9 @@ export default function LoveExperience() {
             />
           </div>
         </div>
-        <div className="rounded-full bg-black/20 px-3 py-1 text-[11px] font-medium text-white/90 ring-1 ring-white/15 backdrop-blur">
+        {/* <div className="rounded-full bg-black/20 px-3 py-1 text-[11px] font-medium text-white/90 ring-1 ring-white/15 backdrop-blur">
           Love meter
-        </div>
+        </div> */}
       </div>
 
       <main className="relative mx-auto flex w-full max-w-md flex-col px-5 pb-16 pt-24">
@@ -337,13 +331,14 @@ export default function LoveExperience() {
               </div>
 
               <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-tight">
-                Hey <span className="text-rose-200">Fike</span>…{" "}
+                Hey <span className="text-rose-200">Kola</span>…{" "}
                 <span className="text-3xl">❤</span>
               </h1>
               <p className="mt-4 max-w-sm text-pretty text-base leading-7 text-white/80">
-                I’ve been meaning to take you on a little adventure.
+                I’ve been wanting to say this in a way you’d remember… so I made
+                you a tiny adventure.
               </p>
-
+              <Image src={Wanted} alt="cool" className="w-full" />
               <div className="mt-8 space-y-3">
                 <PillButton
                   variant="primary"
@@ -355,14 +350,14 @@ export default function LoveExperience() {
                   Start the journey
                 </PillButton>
 
-                <div className="rounded-2xl bg-white/6 p-4 ring-1 ring-white/12 backdrop-blur">
+                {/* <div className="rounded-2xl bg-white/6 p-4 ring-1 ring-white/12 backdrop-blur">
                   <div className="text-xs font-semibold text-white/70">
                     Since I started liking you…
                   </div>
                   <div className="mt-1 text-sm font-semibold tracking-tight">
                     {sinceText}
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <motion.div
@@ -472,11 +467,11 @@ export default function LoveExperience() {
                         "You’re my favorite coincidence.",
                       ];
                       const msg = msgs[i % msgs.length];
-                      setNoMessage(msg);
+                      setJourneyMessage(msg);
                       window.setTimeout(
                         () =>
-                          setNoMessage(
-                            noMessages[noAttempt % noMessages.length],
+                          setJourneyMessage(
+                            "Tap to continue… and if you tap the little hearts, you might find secrets.",
                           ),
                         2000,
                       );
@@ -490,8 +485,8 @@ export default function LoveExperience() {
                 ))}
               </div>
 
-              <div className="mt-6 rounded-2xl bg-black/20 p-4 text-sm text-white/75 ring-1 ring-white/12 backdrop-blur">
-                {noMessage}
+              <div className="mt-6 rounded-2xl bg-black/20 p-4 text-sm text-white/75 ring-1 ring-white/10">
+                {journeyMessage}
               </div>
             </motion.section>
           )}
@@ -551,7 +546,7 @@ export default function LoveExperience() {
                       Treasure chest
                     </div>
                     <div className="mt-1 text-base font-semibold">
-                      Some treasures glow. You do.
+                      Some treasures sparkle… but you actually changed my days.
                     </div>
                   </div>
                   <motion.div
@@ -614,6 +609,16 @@ export default function LoveExperience() {
                 So <span className="font-semibold text-rose-100">Fike</span>…
                 will you join my crew? 🏴‍☠️❤
               </p>
+
+              <div className="mt-6 overflow-hidden rounded-3xl bg-white/6 p-4 ring-1 ring-white/12 backdrop-blur">
+                <div className="mb-3 text-xs font-semibold text-white/70">
+                  Mood right now
+                </div>
+                <TenorGif
+                  postId="2492925402587233181"
+                  className="rounded-2xl overflow-hidden"
+                />
+              </div>
 
               <div className="mt-6 grid grid-cols-2 gap-3">
                 <div className="rounded-3xl bg-white/8 p-5 ring-1 ring-white/14 backdrop-blur">
@@ -707,11 +712,32 @@ export default function LoveExperience() {
                 </div>
 
                 <div className="mt-4 rounded-2xl bg-black/20 p-4 text-sm text-white/80 ring-1 ring-white/10">
-                  {noMessage}
+                  {noMessage ||
+                    "Only one choice is canon… and it’s the one where I get to love you properly."}
                 </div>
               </div>
 
               <HeartBurst active={showBurst} />
+              {showYesGif && (
+                <div className="mt-5 overflow-hidden rounded-3xl bg-white/6 p-4 ring-1 ring-white/12 backdrop-blur">
+                  <TenorGif
+                    postId="24362468"
+                    className="rounded-2xl overflow-hidden"
+                  />
+                </div>
+              )}
+
+              {noAttempt > 0 && (
+                <div className="mt-5 overflow-hidden rounded-3xl bg-white/6 p-4 ring-1 ring-white/12 backdrop-blur">
+                  <TenorGif
+                    postId={
+                      noAttempt % 2 === 0 ? "24471024" : "2464614774211392084"
+                    }
+                    aspectRatio={noAttempt % 2 === 0 ? "1" : "1.77778"}
+                    className="rounded-2xl overflow-hidden"
+                  />
+                </div>
+              )}
 
               <div className="mt-7">
                 <PillButton variant="secondary" onClick={() => go("crew")}>
@@ -742,13 +768,21 @@ export default function LoveExperience() {
                 <span className="font-semibold text-rose-100">Fike</span> 🏴‍☠️
               </p>
 
+              <div className="mt-6 overflow-hidden rounded-3xl bg-white/6 p-4 ring-1 ring-white/12 backdrop-blur">
+                <TenorGif
+                  postId="24362468"
+                  className="rounded-2xl overflow-hidden"
+                />
+              </div>
+
               <div className="mt-8 space-y-3">
                 <div className="rounded-3xl bg-white/8 p-6 text-center ring-1 ring-white/14 backdrop-blur">
                   <div className="text-xs font-semibold text-white/70">
                     Captain’s promise
                   </div>
                   <div className="mt-1 text-lg font-semibold">
-                    I’ll choose you. Again and again.
+                    I’m not perfect… but I’m serious about you. I’ll choose
+                    you—again and again.
                   </div>
                 </div>
 
@@ -758,8 +792,11 @@ export default function LoveExperience() {
                     setJourneyIndex(0);
                     setNoAttempt(0);
                     setNoLabel("No");
-                    setNoMessage(noMessages[0]);
+                    setNoMessage("");
                     setNoPos({ x: 0, y: 0 });
+                    setJourneyMessage(
+                      "Tap to continue… and if you tap the little hearts, you might find secrets.",
+                    );
                     go("intro");
                   }}
                 >
