@@ -281,7 +281,6 @@ export default function LoveExperience() {
         colors,
       });
     } catch {
-      // ignore
     }
 
     window.setTimeout(() => go("success"), 550);
