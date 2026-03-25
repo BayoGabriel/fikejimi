@@ -6,6 +6,9 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import confetti from "canvas-confetti";
 import Image from "next/image";
 import Wanted from "@/assets/Priceless.png";
+import Luffy from "@/assets/luffy.jpg";
+import Luffy1 from "@/assets/luffy1.jpg";
+import Luffy2 from "@/assets/luffy3.jpg";
 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
@@ -44,17 +47,17 @@ type StepId =
   | "success";
 
 const journeyLines = [
-  "Some people cross oceans chasing a dream…",
-  "But somehow, I didn’t have to travel far — I found something priceless in you.",
-  "When you’re around, life feels softer… lighter… happier.",
-  "And I keep thinking… maybe this is destiny starting something beautiful.",
+  "Some pirates sail the world searching for the one piece…",
+  "But somehow, I didn’t need the Grand Line — I found something priceless in you.",
+  "Being around you feels like calm seas after a long storm.",
+  "And I keep thinking… maybe this is the start of my favorite adventure.",
 ];
 
 const treasureCards = [
-  "Your smile >>> everything (it disarms me every time)",
-  "The way you make me laugh — like for real, from my chest",
-  "Your energy… it makes everything feel possible",
-  "You being you (this one is my favorite treasure)",
+  "Your smile… yeah, that’s worth more than any bounty",
+  "The way you make me laugh — effortlessly",
+  "Your energy… it changes everything around you",
+  "You, just being you… that’s my favorite part",
 ];
 
 const noMessages = [
@@ -159,8 +162,6 @@ function PillButton({
     </button>
   );
 }
-
-
 
 export default function LoveExperience() {
   const reduce = useReducedMotion();
@@ -285,11 +286,11 @@ export default function LoveExperience() {
 
     window.setTimeout(() => go("success"), 550);
   }
+  const luffyImages = [Luffy, Luffy1, Luffy2];
 
   return (
     <div className="relative min-h-dvh w-full overflow-hidden bg-[#070912] text-white">
       <Script src="https://tenor.com/embed.js" strategy="afterInteractive" />
-      {/* <MusicToggle /> */}
 
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,77,166,0.35),transparent_40%),radial-gradient(circle_at_80%_30%,rgba(123,223,242,0.28),transparent_45%),radial-gradient(circle_at_50%_85%,rgba(255,209,102,0.25),transparent_45%)]" />
@@ -325,20 +326,16 @@ export default function LoveExperience() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="flex min-h-[78dvh] flex-col justify-center"
             >
-              <div className="mb-4 inline-flex items-center gap-2 self-start rounded-full bg-white/10 px-4 py-2 text-xs font-semibold ring-1 ring-white/20 backdrop-blur">
-                <span className="text-base">🧭</span>
-                <span>Romantic Adventure Log</span>
-              </div>
-
               <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-tight">
-                Hey <span className="text-rose-200">Kola</span>…{" "}
-                <span className="text-3xl">❤</span>
+                Hey <span className="text-rose-200">Fike…</span>{" "}
+                <span className="text-3xl">🏴‍☠️❤️</span>
               </h1>
               <p className="mt-4 max-w-sm text-pretty text-base leading-7 text-white/80">
-                I’ve been wanting to say this in a way you’d remember… so I made
-                you a tiny adventure.
+                I’ve been meaning to tell you something… but not in a normal
+                way. <br /> So I made you a little adventure, because some
+                stories deserve more than just words.
               </p>
-              <Image src={Wanted} alt="cool" className="w-full" />
+              <Image src={Wanted} alt="cool" className="w-full mt-4" />
               <div className="mt-8 space-y-3">
                 <PillButton
                   variant="primary"
@@ -349,15 +346,6 @@ export default function LoveExperience() {
                 >
                   Start the journey
                 </PillButton>
-
-                {/* <div className="rounded-2xl bg-white/6 p-4 ring-1 ring-white/12 backdrop-blur">
-                  <div className="text-xs font-semibold text-white/70">
-                    Since I started liking you…
-                  </div>
-                  <div className="mt-1 text-sm font-semibold tracking-tight">
-                    {sinceText}
-                  </div>
-                </div> */}
               </div>
 
               <motion.div
@@ -462,9 +450,9 @@ export default function LoveExperience() {
                         "If you found this, you owe me a smile.",
                         "Tiny secret: I’m really into you.",
                         "Treasure hint: it’s you.",
-                        "Captain’s note: you’re special.",
+                        "You’re special.",
                         "Plot twist: I like you… a lot.",
-                        "You’re my favorite coincidence.",
+                        "You’re my favorite pirate.",
                       ];
                       const msg = msgs[i % msgs.length];
                       setJourneyMessage(msg);
@@ -506,37 +494,46 @@ export default function LoveExperience() {
               </div>
 
               <h2 className="mt-5 text-balance text-3xl font-semibold leading-tight tracking-tight">
-                Why you’re my greatest treasure
+                What makes you a treasure?
               </h2>
 
               <div className="mt-6 space-y-3">
-                {treasureCards.map((t, i) => (
-                  <motion.div
-                    key={t}
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: i * 0.08,
-                      ease: "easeOut",
-                    }}
-                    className="rounded-3xl bg-white/8 p-5 ring-1 ring-white/14 backdrop-blur"
-                  >
-                    <div className="flex items-start gap-3">
-                      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-white/10 text-lg ring-1 ring-white/20">
-                        ✨
-                      </div>
-                      <div>
-                        <div className="text-sm font-semibold text-white/85">
-                          Treasure #{i + 1}
+                {treasureCards.map((t, i) => {
+                  const img = luffyImages[i % luffyImages.length];
+
+                  return (
+                    <motion.div
+                      key={t}
+                      initial={{ opacity: 0, y: 18 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.5,
+                        delay: i * 0.08,
+                        ease: "easeOut",
+                      }}
+                      className="rounded-3xl bg-white/8 p-5 ring-1 ring-white/14 backdrop-blur"
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-2xl bg-white/10 ring-1 ring-white/20">
+                          <Image
+                            src={img}
+                            alt="luffy"
+                            className="h-full w-full object-cover"
+                          />
                         </div>
-                        <div className="mt-1 text-lg font-semibold leading-snug tracking-tight">
-                          {t}
+
+                        <div>
+                          <div className="text-sm font-semibold text-white/85">
+                            Treasure #{i + 1}
+                          </div>
+                          <div className="mt-1 text-lg font-semibold leading-snug tracking-tight">
+                            {t}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  );
+                })}
               </div>
 
               <div className="relative mt-6 overflow-hidden rounded-3xl bg-gradient-to-r from-amber-200/15 via-rose-200/10 to-cyan-200/10 p-5 ring-1 ring-white/14 backdrop-blur">
@@ -808,7 +805,7 @@ export default function LoveExperience() {
         </AnimatePresence>
 
         <div className="mt-10 flex items-center justify-center text-xs text-white/50">
-          Made with intention — for{" "}
+          Made with love — for{" "}
           <span className="ml-1 font-semibold text-white/70">Fike</span>
         </div>
       </main>
