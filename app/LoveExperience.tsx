@@ -7,8 +7,10 @@ import confetti from "canvas-confetti";
 import Image from "next/image";
 import Wanted from "@/assets/Priceless.png";
 import Luffy from "@/assets/luffy.jpg";
-import Luffy1 from "@/assets/luffy1.jpg";
-import Luffy2 from "@/assets/luffy3.jpg";
+import Luffy1 from "@/assets/zoro.png";
+import Luffy2 from "@/assets/robin.jpeg";
+import Luffy3 from "@/assets/sanji.jpg";
+import Sanji_Flower from "@/assets/sanji-flowers.gif";
 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
@@ -280,12 +282,11 @@ export default function LoveExperience() {
         origin: { y: 0.62 },
         colors,
       });
-    } catch {
-    }
+    } catch {}
 
     window.setTimeout(() => go("success"), 550);
   }
-  const luffyImages = [Luffy, Luffy1, Luffy2];
+  const luffyImages = [Luffy, Luffy1, Luffy2, Luffy3];
 
   return (
     <div className="relative min-h-dvh w-full overflow-hidden bg-[#070912] text-white">
@@ -330,9 +331,9 @@ export default function LoveExperience() {
                 <span className="text-3xl">🏴‍☠️❤️</span>
               </h1>
               <p className="mt-4 max-w-sm text-pretty text-base leading-7 text-white/80">
-                I’ve been meaning to tell you something… but not in a normal
-                way. <br /> So I made you a little adventure, because some
-                stories deserve more than just words.
+                I’ve been meaning to tell you something… <br /> So I made you a
+                little adventure, because some stories deserve more than just
+                words.
               </p>
               <Image src={Wanted} alt="cool" className="w-full mt-4" />
               <div className="mt-8 space-y-3">
@@ -391,16 +392,30 @@ export default function LoveExperience() {
                 className="relative w-full text-left"
               >
                 <div className="rounded-3xl bg-white/8 p-6 ring-1 ring-white/14 backdrop-blur">
-                  <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-xs font-semibold ring-1 ring-white/15">
-                    <span>🌊</span>
-                    <span>On the ocean of destiny</span>
-                  </div>
-
+                  <div
+                    className="tenor-gif-embed"
+                    data-postid="21100356"
+                    data-share-method="host"
+                    data-aspect-ratio="1.83908"
+                    data-width="100%"
+                  >
+                    <a href="https://tenor.com/view/one-piece-boat-setting-sail-ship-gif-21100356">
+                      One Piece Boat GIF
+                    </a>
+                    from{" "}
+                    <a href="https://tenor.com/search/one+piece-gifs">
+                      One Piece GIFs
+                    </a>
+                  </div>{" "}
+                  <script
+                    type="text/javascript"
+                    async
+                    src="https://tenor.com/embed.js"
+                  ></script>
                   <div className="min-h-[120px] text-balance text-2xl font-semibold leading-snug tracking-tight">
                     {journeyText}
                     <span className="inline-block w-2" />
                   </div>
-
                   <div className="mt-6 flex items-center justify-between">
                     <div className="text-xs font-medium text-white/70">
                       {journeyIndex === journeyLines.length - 1
@@ -512,7 +527,7 @@ export default function LoveExperience() {
                       }}
                       className="rounded-3xl bg-white/8 p-5 ring-1 ring-white/14 backdrop-blur"
                     >
-                      <div className="flex items-start gap-3">
+                      <div className="flex items-center gap-3">
                         <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-2xl bg-white/10 ring-1 ring-white/20">
                           <Image
                             src={img}
@@ -533,46 +548,6 @@ export default function LoveExperience() {
                     </motion.div>
                   );
                 })}
-              </div>
-
-              <div className="relative mt-6 overflow-hidden rounded-3xl bg-gradient-to-r from-amber-200/15 via-rose-200/10 to-cyan-200/10 p-5 ring-1 ring-white/14 backdrop-blur">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-xs font-semibold text-white/70">
-                      Treasure chest
-                    </div>
-                    <div className="mt-1 text-base font-semibold">
-                      Some treasures sparkle… but you actually changed my days.
-                    </div>
-                  </div>
-                  <motion.div
-                    aria-hidden
-                    className="text-3xl"
-                    animate={
-                      reduce
-                        ? undefined
-                        : { rotate: [0, -6, 6, 0], y: [0, -4, 0] }
-                    }
-                    transition={{
-                      duration: 2.8,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    🧰
-                  </motion.div>
-                </div>
-
-                <motion.div
-                  aria-hidden
-                  className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full bg-amber-200/30 blur-3xl"
-                  animate={reduce ? undefined : { opacity: [0.2, 0.5, 0.25] }}
-                  transition={{
-                    duration: 2.6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
               </div>
 
               <div className="mt-7">
@@ -610,10 +585,8 @@ export default function LoveExperience() {
                 <div className="mb-3 text-xs font-semibold text-white/70">
                   Mood right now
                 </div>
-                <TenorGif
-                  postId="2492925402587233181"
-                  className="rounded-2xl overflow-hidden"
-                />
+                <Image src={Sanji_Flower} alt='sanji-flowers'/>
+                
               </div>
 
               <div className="mt-6 grid grid-cols-2 gap-3">
