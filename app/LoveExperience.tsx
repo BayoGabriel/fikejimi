@@ -11,6 +11,7 @@ import Luffy1 from "@/assets/zoro.png";
 import Luffy2 from "@/assets/robin.jpeg";
 import Luffy3 from "@/assets/sanji.jpg";
 import Sanji_Flower from "@/assets/sanji-flowers.gif";
+import BOat from "@/assets/boat.gif";
 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
@@ -394,26 +395,11 @@ export default function LoveExperience() {
                 className="relative w-full text-left"
               >
                 <div className="rounded-3xl bg-white/8 p-6 ring-1 ring-white/14 backdrop-blur">
-                  <div
-                    className="tenor-gif-embed"
-                    data-postid="21100356"
-                    data-share-method="host"
-                    data-aspect-ratio="1.83908"
-                    data-width="100%"
-                  >
-                    <a href="https://tenor.com/view/one-piece-boat-setting-sail-ship-gif-21100356">
-                      One Piece Boat GIF
-                    </a>
-                    from{" "}
-                    <a href="https://tenor.com/search/one+piece-gifs">
-                      One Piece GIFs
-                    </a>
-                  </div>{" "}
-                  <script
-                    type="text/javascript"
-                    async
-                    src="https://tenor.com/embed.js"
-                  ></script>
+                  <Image
+                    src={BOat}
+                    alt="journey"
+                    className="w-full rounded-2xl"
+                  />
                   <div className="min-h-[120px] text-balance text-2xl font-semibold leading-snug tracking-tight">
                     {journeyText}
                     <span className="inline-block w-2" />
@@ -605,7 +591,7 @@ export default function LoveExperience() {
                     To laugh, to grow… and to figure things out together
                   </div>
                 </div>
-                <div className="col-span-2 rounded-3xl bg-white/8 p-5 ring-1 ring-white/14 backdrop-blur">
+                <div className="rounded-3xl bg-white/8 p-5 ring-1 ring-white/14 backdrop-blur">
                   <div className="text-xs font-semibold text-white/70">
                     Map coordinates
                   </div>
@@ -635,11 +621,6 @@ export default function LoveExperience() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="min-h-[78dvh]"
             >
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold ring-1 ring-white/20 backdrop-blur">
-                <span>💖</span>
-                <span>The big question</span>
-              </div>
-
               <h2 className="mt-6 text-center text-balance text-4xl font-semibold leading-[1.05] tracking-tight">
                 Fike…
                 <span className="block text-rose-200 mt-2">
@@ -685,11 +666,11 @@ export default function LoveExperience() {
                     </motion.button>
                   </div>
                 </div>
-
-                <div className="mt-4 rounded-2xl bg-black/20 p-4 text-sm text-white/80 ring-1 ring-white/10">
-                  {noMessage ||
-                    "Only one choice is canon… and it’s the one where I get to love you properly."}
-                </div>
+                {noMessage && (
+                  <div className="mt-4 rounded-2xl bg-black/20 p-4 text-sm text-white/80 ring-1 ring-white/10">
+                    {noMessage || ""}
+                  </div>
+                )}
               </div>
 
               <HeartBurst active={showBurst} />
