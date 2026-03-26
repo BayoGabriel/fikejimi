@@ -49,17 +49,18 @@ type StepId =
   | "success";
 
 const journeyLines = [
-  "Some pirates sail the world searching for the one piece…",
-  "But somehow, I didn’t need the Grand Line — I found something priceless in you.",
-  "Being around you feels like calm seas after a long storm.",
-  "And I keep thinking… maybe this is the start of my favorite adventure.",
+  "Some pirates cross the seas searching for treasure…",
+  "But somehow, I didn’t need the Grand Line, I found my one piece in you.",
+  "Being around you feels easy… like everything just makes sense.",
+  "And I keep catching myself thinking… I don’t want this to be just a moment.",
+  "I want it to be something real.",
 ];
 
 const treasureCards = [
-  "Your smile… yeah, that’s worth more than any bounty",
-  "The way you make me laugh — effortlessly",
-  "Your energy… it changes everything around you",
-  "You, just being you… that’s my favorite part",
+  "Your smile… yeah, that’s unfair. It changes everything.",
+  "The way you make things feel lighter, without even trying",
+  "Your energy… it’s calm, but somehow still powerful",
+  "You, just being you… that’s honestly my favorite part",
 ];
 
 const noMessages = [
@@ -331,9 +332,10 @@ export default function LoveExperience() {
                 <span className="text-3xl">🏴‍☠️❤️</span>
               </h1>
               <p className="mt-4 max-w-sm text-pretty text-base leading-7 text-white/80">
-                I’ve been meaning to tell you something… <br /> So I made you a
-                little adventure, because some stories deserve more than just
-                words.
+                I’ve been trying to find the right way to say this… and
+                honestly, words alone didn’t feel enough.
+                <br /> So I made you a little adventure — because you deserve
+                something a bit more special.
               </p>
               <Image src={Wanted} alt="cool" className="w-full mt-4" />
               <div className="mt-8 space-y-3">
@@ -573,23 +575,22 @@ export default function LoveExperience() {
               </div>
 
               <h2 className="mt-5 text-balance text-3xl font-semibold leading-tight tracking-tight">
-                Every great adventure needs the right person by your side…
+                Every great story has that one person that makes it meaningful…
               </h2>
 
               <p className="mt-4 text-base leading-7 text-white/80">
                 So <span className="font-semibold text-rose-100">Fike</span>…
-                will you join my crew? 🏴‍☠️❤
+                will you be that person for me?🏴‍☠️❤
               </p>
 
               <div className="mt-6 overflow-hidden rounded-3xl bg-white/6 p-4 ring-1 ring-white/12 backdrop-blur">
                 <div className="mb-3 text-xs font-semibold text-white/70">
                   Mood right now
                 </div>
-                <Image src={Sanji_Flower} alt='sanji-flowers'/>
-                
+                <Image src={Sanji_Flower} alt="sanji-flowers" />
               </div>
 
-              <div className="mt-6 grid grid-cols-2 gap-3">
+              <div className="mt-6 grid grid-cols-1 gap-3">
                 <div className="rounded-3xl bg-white/8 p-5 ring-1 ring-white/14 backdrop-blur">
                   <div className="text-xs font-semibold text-white/70">
                     Role
@@ -601,7 +602,7 @@ export default function LoveExperience() {
                     Oath
                   </div>
                   <div className="mt-1 text-lg font-semibold">
-                    To laugh a lot
+                    To laugh, to grow… and to figure things out together
                   </div>
                 </div>
                 <div className="col-span-2 rounded-3xl bg-white/8 p-5 ring-1 ring-white/14 backdrop-blur">
@@ -609,7 +610,7 @@ export default function LoveExperience() {
                     Map coordinates
                   </div>
                   <div className="mt-1 text-base font-semibold text-white/90">
-                    (My heart) → (Your smile)
+                    Somewhere between me… and you
                   </div>
                 </div>
               </div>
@@ -640,8 +641,13 @@ export default function LoveExperience() {
               </div>
 
               <h2 className="mt-6 text-center text-balance text-4xl font-semibold leading-[1.05] tracking-tight">
-                Will you be my girlfriend,
-                <span className="block text-rose-200">Fike</span>?
+                Fike…
+                <span className="block text-rose-200 mt-2">
+                  will you be my girlfriend
+                </span>
+                <span className="block text-sm mt-3 text-white/70">
+                  not just for a moment — but for something real, with me ❤️
+                </span>
               </h2>
 
               <div
